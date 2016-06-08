@@ -22,5 +22,16 @@ namespace ContratCadre.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=C:\\Users\\henri.hitier\\Source\\Repos\\ContratCadre\\ContratCadre\\ContratC" +
+            "adre\\bin\\Debug\\db.sqlite")]
+        public string dbConnectionString {
+            get {
+                return ((string)(this["dbConnectionString"]));
+            }
+        }
     }
 }

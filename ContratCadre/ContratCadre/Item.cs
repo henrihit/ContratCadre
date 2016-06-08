@@ -12,8 +12,15 @@ namespace ContratCadre
     using System;
     using System.Collections.Generic;
     
-    public partial class Test
+    public partial class Item
     {
-        public long Id { get; set; }
+        public long ItemId { get; set; }
+        public long ContractId { get; set; }
+        public string Name { get; set; }
+        public string Unit { get; set; }
+        public System.DateTime CreationDate { get; set; }
+        public System.DateTime LastModifiedDate { get; set; }
+    
+        public virtual Contract Contract { get; set; }
     }
 }

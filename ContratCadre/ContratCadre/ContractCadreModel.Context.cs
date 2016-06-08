@@ -25,6 +25,7 @@ namespace ContratCadre
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Test> Tests { get; set; }
+        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
     }
 }
