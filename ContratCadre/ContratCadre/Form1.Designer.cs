@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contractBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -50,15 +49,12 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
+            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingNavigator)).BeginInit();
             this.contractBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // contractBindingSource
-            // 
-            this.contractBindingSource.DataSource = typeof(ContratCadre.Contract);
             // 
             // contractBindingNavigator
             // 
@@ -86,7 +82,7 @@
             this.contractBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.contractBindingNavigator.Name = "contractBindingNavigator";
             this.contractBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.contractBindingNavigator.Size = new System.Drawing.Size(867, 25);
+            this.contractBindingNavigator.Size = new System.Drawing.Size(596, 25);
             this.contractBindingNavigator.TabIndex = 0;
             this.contractBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -178,11 +174,11 @@
             // contractBindingNavigatorSaveItem
             // 
             this.contractBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.contractBindingNavigatorSaveItem.Enabled = false;
             this.contractBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("contractBindingNavigatorSaveItem.Image")));
             this.contractBindingNavigatorSaveItem.Name = "contractBindingNavigatorSaveItem";
             this.contractBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.contractBindingNavigatorSaveItem.Text = "Save Data";
+            this.contractBindingNavigatorSaveItem.Click += new System.EventHandler(this.contractBindingNavigatorSaveItem_Click);
             // 
             // contractDataGridView
             // 
@@ -197,7 +193,7 @@
             this.contractDataGridView.DataSource = this.contractBindingSource;
             this.contractDataGridView.Location = new System.Drawing.Point(12, 28);
             this.contractDataGridView.Name = "contractDataGridView";
-            this.contractDataGridView.Size = new System.Drawing.Size(300, 220);
+            this.contractDataGridView.Size = new System.Drawing.Size(553, 220);
             this.contractDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -205,6 +201,7 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "ContractId";
             this.dataGridViewTextBoxColumn1.HeaderText = "ContractId";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -230,21 +227,26 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Items";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // contractBindingSource
+            // 
+            this.contractBindingSource.DataSource = typeof(ContratCadre.Contract);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 566);
+            this.ClientSize = new System.Drawing.Size(596, 312);
             this.Controls.Add(this.contractDataGridView);
             this.Controls.Add(this.contractBindingNavigator);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingNavigator)).EndInit();
             this.contractBindingNavigator.ResumeLayout(false);
             this.contractBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,4 +276,3 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
-
