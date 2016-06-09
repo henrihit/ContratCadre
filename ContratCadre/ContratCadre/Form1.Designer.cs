@@ -32,17 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contractDataGridView = new System.Windows.Forms.DataGridView();
             this.ContractId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemsDataGridView = new System.Windows.Forms.DataGridView();
             this.ItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -56,12 +48,20 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.contractDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // contractDataGridView
@@ -78,6 +78,7 @@
             this.contractDataGridView.Name = "contractDataGridView";
             this.contractDataGridView.Size = new System.Drawing.Size(471, 220);
             this.contractDataGridView.TabIndex = 0;
+            this.contractDataGridView.Enter += new System.EventHandler(this.contractDataGridView_Enter);
             // 
             // ContractId
             // 
@@ -85,28 +86,6 @@
             this.ContractId.HeaderText = "ContractId";
             this.ContractId.Name = "ContractId";
             this.ContractId.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "CreationDate";
-            this.dataGridViewTextBoxColumn3.HeaderText = "CreationDate";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "LastModifiedDate";
-            this.dataGridViewTextBoxColumn4.HeaderText = "LastModifiedDate";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // contractBindingSource
-            // 
-            this.contractBindingSource.DataSource = typeof(ContratCadre.Contract);
             // 
             // itemsBindingSource
             // 
@@ -128,6 +107,7 @@
             this.itemsDataGridView.Name = "itemsDataGridView";
             this.itemsDataGridView.Size = new System.Drawing.Size(559, 220);
             this.itemsDataGridView.TabIndex = 2;
+            this.itemsDataGridView.Enter += new System.EventHandler(this.itemsDataGridView_Enter);
             // 
             // ItemId
             // 
@@ -135,30 +115,6 @@
             this.ItemId.HeaderText = "ItemId";
             this.ItemId.Name = "ItemId";
             this.ItemId.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Unit";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "CreationDate";
-            this.dataGridViewTextBoxColumn9.HeaderText = "CreationDate";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "LastModifiedDate";
-            this.dataGridViewTextBoxColumn10.HeaderText = "LastModifiedDate";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             // 
             // bindingNavigator1
             // 
@@ -285,6 +241,52 @@
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
+            // contractBindingSource
+            // 
+            this.contractBindingSource.DataSource = typeof(ContratCadre.Contract);
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Unit";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "CreationDate";
+            this.dataGridViewTextBoxColumn9.HeaderText = "CreationDate";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "LastModifiedDate";
+            this.dataGridViewTextBoxColumn10.HeaderText = "LastModifiedDate";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CreationDate";
+            this.dataGridViewTextBoxColumn3.HeaderText = "CreationDate";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "LastModifiedDate";
+            this.dataGridViewTextBoxColumn4.HeaderText = "LastModifiedDate";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,12 +300,12 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.contractDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

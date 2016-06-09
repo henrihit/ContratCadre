@@ -41,5 +41,15 @@ namespace ContratCadre
             this.contractDataGridView.Refresh();
             this.itemsDataGridView.Refresh();
         }
+
+        private void contractDataGridView_Enter(object sender, EventArgs e)
+        {
+            bindingNavigator1.BindingSource = contractBindingSource;
+        }
+
+        private void itemsDataGridView_Enter(object sender, EventArgs e)
+        {
+            bindingNavigator1.BindingSource = itemsBindingSource;
+        }
     }
 }
