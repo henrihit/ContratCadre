@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\henri.hitier\Source\Repos\ContratCadre\ContratCadre\ContratCadre\bin\Debug\db.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ContratCadreModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\henri.hitier\Source\Repos\ContratCadre\ContratCadre\ContratCadre\bin\Debug\db.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Contract">
           <Key>
             <PropertyRef Name="ContractId" />
@@ -37,7 +37,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbModelStoreContainer">
+        <EntityContainer Name="ContratCadreModelStoreContainer">
           <EntitySet Name="Contract" EntityType="Self.Contract" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" store:Type="Tables" />
           <AssociationSet Name="FK_Items_0_0" Association="Self.FK_Items_0_0">
@@ -45,27 +45,20 @@
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Contracts" EntityType="dbModel.Contract" />
-          <EntitySet Name="Items" EntityType="dbModel.Item" />
-          <AssociationSet Name="FK_Items_0_0" Association="dbModel.FK_Items_0_0">
-            <End Role="Contract" EntitySet="Contracts" />
-            <End Role="Item" EntitySet="Items" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="ContratCadreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Contract">
           <Key>
             <PropertyRef Name="ContractId" />
           </Key>
           <Property Name="ContractId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Items" Relationship="dbModel.FK_Items_0_0" FromRole="Contract" ToRole="Item" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Items_0_0" FromRole="Contract" ToRole="Items" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -73,49 +66,57 @@
           </Key>
           <Property Name="ItemId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ContractId" Type="Int64" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="Unit" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Contract" Relationship="dbModel.FK_Items_0_0" FromRole="Item" ToRole="Contract" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Items_0_0" FromRole="Items" ToRole="Contract" />
         </EntityType>
         <Association Name="FK_Items_0_0">
-          <End Type="dbModel.Contract" Role="Contract" Multiplicity="1" />
-          <End Type="dbModel.Item" Role="Item" Multiplicity="*" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
+          <End Role="Items" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Contract">
               <PropertyRef Name="ContractId" />
             </Principal>
-            <Dependent Role="Item">
+            <Dependent Role="Items">
               <PropertyRef Name="ContractId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <AssociationSet Name="FK_Items_0_0" Association="Self.FK_Items_0_0">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbModelStoreContainer" CdmEntityContainer="dbEntities">
+        <EntityContainerMapping StorageEntityContainer="ContratCadreModelStoreContainer" CdmEntityContainer="dbEntities">
           <EntitySetMapping Name="Contracts">
-            <EntityTypeMapping TypeName="dbModel.Contract">
+            <EntityTypeMapping TypeName="ContratCadreModel.Contract">
               <MappingFragment StoreEntitySet="Contract">
-                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="dbModel.Item">
+            <EntityTypeMapping TypeName="ContratCadreModel.Item">
               <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

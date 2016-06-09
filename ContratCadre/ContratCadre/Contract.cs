@@ -17,7 +17,7 @@ namespace ContratCadre
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Contract()
         {
-            this.Items = new HashSet<Item>();
+            this.Items = new ObservableListSource<Item>();
         }
     
         public long ContractId { get; set; }
@@ -26,6 +26,6 @@ namespace ContratCadre
         public System.DateTime LastModifiedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ObservableListSource<Item> Items { get; set; }
     }
 }
